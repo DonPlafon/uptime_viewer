@@ -6,10 +6,8 @@
     --text-secondary: #737373;
     --accent: #2f81f7;
 
-    --color-up: #10B981;
-    --color-up-hover: #34D399;
+    --color-up: #18d43b;
     --color-down: #EF4444;
-    --color-down-hover: #F87171;
     --color-unknown: #171717;
 
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -116,12 +114,12 @@ header {
 }
 
 .status-indicator.up {
-    background: var(--color-up-hover);
+    background: var(--color-up);
     box-shadow: 0 0 16px rgba(52, 211, 153, 0.2);
 }
 
 .status-indicator.down {
-    background: var(--color-down-hover);
+    background: var(--color-down);
     box-shadow: 0 0 16px rgba(248, 113, 113, 0.2);
 }
 
@@ -153,7 +151,7 @@ header {
 .uptime-percentage {
     font-size: 18px;
     font-weight: 600;
-    color: var(--color-up-hover);
+    color: var(--color-up);
 }
 
 .uptime-percentage.warning {
@@ -161,7 +159,7 @@ header {
 }
 
 .uptime-percentage.danger {
-    color: var(--color-down-hover);
+    color: var(--color-down);
 }
 
 .downtime-total {
