@@ -17,8 +17,8 @@ services:
 
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: uptime_backend
     restart: always
     environment:
@@ -31,8 +31,5 @@ services:
       - DB_NAME=${MYSQL_DATABASE:-uptime}
     ports:
       - "8000"
-    volumes:
-      - ./backend:/app
-      - ./frontend:/app/frontend
     depends_on:
       - db

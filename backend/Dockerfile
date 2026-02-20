@@ -9,12 +9,14 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/requirements.txt ./backend/
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
-COPY . .
+COPY backend/ ./backend/
+COPY frontend/ ./frontend/
 
 # Run unbuffered so logs work
 ENV PYTHONUNBUFFERED=1
 
+WORKDIR /app/backend
 CMD ["python", "app.py"]
