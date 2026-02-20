@@ -13,7 +13,7 @@ services:
     volumes:
       - ${MYSQL_DATA_DIR:-./mysql_data}:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3306"
 
   backend:
     build:
@@ -30,7 +30,7 @@ services:
       - DB_PASSWORD=${MYSQL_PASSWORD:-uptime}
       - DB_NAME=${MYSQL_DATABASE:-uptime}
     ports:
-      - "8000:8000"
+      - "8000"
     volumes:
       - ./backend:/app
       - ./frontend:/app/frontend
