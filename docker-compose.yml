@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: uptime_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-uptime}
+      MYSQL_USER: ${MYSQL_USER:-uptime}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-uptime}
+    volumes:
+      - ${MYSQL_DATA_DIR:-./mysql_data}:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: uptime_backend
+    restart: always
+    environment:
+      - DEV_MODE=1
+      - URLS=${URLS}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=${MYSQL_USER:-uptime}
+      - DB_PASSWORD=${MYSQL_PASSWORD:-uptime}
+      - DB_NAME=${MYSQL_DATABASE:-uptime}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./frontend:/app/frontend
+    depends_on:
+      - db

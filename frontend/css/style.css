@@ -1,0 +1,244 @@
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent: #2f81f7;
+    
+    --color-up: #238636;
+    --color-up-hover: #2ea043;
+    --color-down: #da3633;
+    --color-down-hover: #f85149;
+    --color-unknown: #484f58;
+
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --border-radius: 8px;
+    --transition: all 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 24px;
+}
+
+.header-left h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.period-selector {
+    display: flex;
+    gap: 8px;
+    background: var(--card-bg);
+    padding: 4px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.period-selector button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.period-selector button:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.period-selector button.active {
+    background: var(--border-color);
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.loading-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 60px;
+    font-size: 15px;
+}
+
+/* Service Card */
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.service-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-unknown);
+}
+
+.status-indicator.up {
+    background: var(--color-up-hover);
+    box-shadow: 0 0 12px rgba(46, 160, 67, 0.4);
+}
+
+.status-indicator.down {
+    background: var(--color-down-hover);
+    box-shadow: 0 0 12px rgba(248, 81, 73, 0.4);
+}
+
+.service-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.service-link {
+    color: var(--text-secondary);
+    transition: var(--transition);
+    display: flex;
+    margin-top: 2px;
+}
+
+.service-link:hover {
+    color: var(--text-primary);
+}
+
+.service-metrics {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.uptime-percentage {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-up-hover);
+}
+
+.uptime-percentage.warning {
+    color: #d29922;
+}
+
+.uptime-percentage.danger {
+    color: var(--color-down-hover);
+}
+
+.downtime-total {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Status Bar */
+.uptime-bar-container {
+    margin-bottom: 32px;
+}
+
+.uptime-segments {
+    display: flex;
+    gap: 3px;
+    height: 36px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.segment {
+    flex: 1;
+    background: var(--color-unknown);
+    transition: opacity 0.2s;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+}
+
+.segment:hover {
+    opacity: 0.8;
+}
+
+.segment.up {
+    background: var(--color-up);
+}
+
+.segment.down {
+    background: var(--color-down);
+}
+
+.uptime-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.uptime-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+    margin: 0 16px;
+}
+
+/* Charts */
+.chart-wrapper h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.chart-container {
+    height: 140px;
+    width: 100%;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uptime Viewer</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>Service Status</h1>
+                <p class="subtitle">System Monitor</p>
+            </div>
+            <div class="period-selector">
+                <button data-period="24" class="active">24H</button>
+                <button data-period="168">7D</button>
+                <button data-period="720">30D</button>
+            </div>
+        </header>
+
+        <main id="services-container">
+            <!-- Services injected by JS -->
+            <div id="loading" class="loading-state">Loading services...</div>
+        </main>
+    </div>
+
+    <!-- Template -->
+    <template id="service-template">
+        <div class="service-card">
+            <div class="service-header">
+                <div class="service-title">
+                    <span class="status-indicator"></span>
+                    <h2 class="service-name">Service Name</h2>
+                    <a href="" target="_blank" class="service-link">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+                <div class="service-metrics">
+                    <span class="uptime-percentage">100% Uptime</span>
+                    <span class="downtime-total">0m Downtime</span>
+                </div>
+            </div>
+
+            <div class="uptime-bar-container">
+                <div class="uptime-segments"></div>
+                <div class="uptime-labels">
+                    <span class="start-label"></span>
+                    <div class="uptime-line"></div>
+                    <span class="end-label">Today</span>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <h3>Ping History</h3>
+                <div class="chart-container">
+                    <canvas class="ping-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
