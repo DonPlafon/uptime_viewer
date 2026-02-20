@@ -48,7 +48,7 @@ async def get_services(request):
 
 @app.get("/api/status/<service_id:int>")
 async def get_status(request, service_id: int):
-    hours = int(request.args.get("hours", 24))
+    hours = max(1, min(int(request.args.get("hours", 24)), 720)) # max 30 days
     cutoff = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=hours)
     
     async with app.ctx.session_maker() as session:
@@ -72,7 +72,7 @@ async def get_status(request, service_id: int):
 
 @app.get("/api/ping/<service_id:int>")
 async def get_pings(request, service_id: int):
-    hours = int(request.args.get("hours", 24))
+    hours = max(1, min(int(request.args.get("hours", 24)), 720)) # max 30 days
     cutoff = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=hours)
 
     async with app.ctx.session_maker() as session:
