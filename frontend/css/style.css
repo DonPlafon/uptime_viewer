@@ -1,20 +1,20 @@
 :root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --border-color: #30363d;
-    --text-primary: #c9d1d9;
-    --text-secondary: #8b949e;
+    --bg-color: #000000;
+    --card-bg: #0a0a0a;
+    --border-color: transparent;
+    --text-primary: #ededed;
+    --text-secondary: #737373;
     --accent: #2f81f7;
-    
-    --color-up: #238636;
-    --color-up-hover: #2ea043;
-    --color-down: #da3633;
-    --color-down-hover: #f85149;
-    --color-unknown: #484f58;
+
+    --color-up: #10B981;
+    --color-up-hover: #34D399;
+    --color-down: #EF4444;
+    --color-down-hover: #F87171;
+    --color-unknown: #171717;
 
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    --border-radius: 8px;
-    --transition: all 0.2s ease;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -34,46 +34,38 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 60px 20px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 24px;
+    margin-bottom: 60px;
 }
 
 .header-left h1 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #fff;
-}
-
-.subtitle {
-    color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
 .period-selector {
     display: flex;
-    gap: 8px;
-    background: var(--card-bg);
+    gap: 4px;
+    background: #121212;
     padding: 4px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
 
 .period-selector button {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding: 6px 16px;
+    padding: 8px 16px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
     transition: var(--transition);
@@ -81,13 +73,11 @@ header {
 
 .period-selector button:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
 }
 
 .period-selector button.active {
-    background: var(--border-color);
-    color: var(--text-primary);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background: #262626;
+    color: #ffffff;
 }
 
 .loading-state {
@@ -100,47 +90,46 @@ header {
 /* Service Card */
 .service-card {
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 24px;
+    padding: 32px;
     margin-bottom: 24px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .service-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 .service-title {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
 .status-indicator {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--color-unknown);
 }
 
 .status-indicator.up {
     background: var(--color-up-hover);
-    box-shadow: 0 0 12px rgba(46, 160, 67, 0.4);
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.2);
 }
 
 .status-indicator.down {
     background: var(--color-down-hover);
-    box-shadow: 0 0 12px rgba(248, 81, 73, 0.4);
+    box-shadow: 0 0 16px rgba(248, 113, 113, 0.2);
 }
 
 .service-name {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
-    color: #fff;
+    color: #ffffff;
+    letter-spacing: -0.3px;
 }
 
 .service-link {
