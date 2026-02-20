@@ -42,11 +42,28 @@ header {
     margin-bottom: 60px;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .header-left h1 {
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.5px;
+}
+
+.github-link {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.github-link:hover {
+    color: var(--text-primary);
 }
 
 .period-selector {
