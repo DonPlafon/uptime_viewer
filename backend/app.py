@@ -10,8 +10,8 @@ from monitor import monitor_loop
 app = Sanic("UptimeViewer")
 
 # Serve frontend static files
-app.static('/css', '../frontend/css')
-app.static('/js', '../frontend/js')
+app.static('/css', '../frontend/css', name='css')
+app.static('/js', '../frontend/js', name='js')
 
 @app.route("/")
 async def index(request):
