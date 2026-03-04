@@ -12,6 +12,7 @@ class Service(Base):
     id = Column(Integer, primary_key=True, index=True)
     url = Column(String(2048), unique=True, nullable=False, index=True)
     name = Column(String(255), nullable=True)
+    notified_down = Column(Boolean, nullable=False, default=False)
 
 class StateLog(Base):
     __tablename__ = 'state_logs'
@@ -46,3 +47,10 @@ def get_sessionmaker(engine):
 async def init_db(engine):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        
+        # Auto-migrate: try adding the new column if it doesn't exist
+        try:
+            from sqlalchemy import text
+            await conn.execute(text("ALTER TABLE services ADD COLUMN notified_down BOOLEAN NOT NULL DEFAULT 0"))
+        except Exception:
+            pass

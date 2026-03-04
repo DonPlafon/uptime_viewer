@@ -29,6 +29,8 @@ services:
       - DB_USER=${MYSQL_USER:-uptime}
       - DB_PASSWORD=${MYSQL_PASSWORD:-uptime}
       - DB_NAME=${MYSQL_DATABASE:-uptime}
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN}
+      - TG_CHAT_ID=${TG_CHAT_ID}
     ports:
       - "8000"
     depends_on:
