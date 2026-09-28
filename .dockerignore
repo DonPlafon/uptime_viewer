@@ -1,0 +1,13 @@
+# Only application source is needed in the image build context.
+**
+!backend/
+!backend/*.py
+!backend/requirements.txt
+!backend/Dockerfile
+!frontend/
+!frontend/index.html
+!frontend/css/
+!frontend/css/*.css
+!frontend/js/
+!frontend/js/*.js
+!frontend/js/*.mjs

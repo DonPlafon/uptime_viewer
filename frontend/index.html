@@ -1,84 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uptime Viewer</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 </head>
-
 <body>
     <div class="container">
         <header>
-            <div class="header-left">
+            <div>
+                <a class="project-link" href="https://github.com/DonPlafon/uptime_viewer" target="_blank" rel="noopener">UPTIME VIEWER</a>
                 <h1>Service Status</h1>
-                <a href="https://github.com/DonPlafon/uptime_viewer" target="_blank" class="github-link"
-                    title="Source Code">
-                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path
-                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                        </path>
-                    </svg>
-                </a>
             </div>
-            <div class="period-selector">
-                <button data-period="24" class="active">24H</button>
-                <button data-period="168">7D</button>
-                <button data-period="720">30D</button>
+            <div class="header-controls">
+                <div class="period-selector" role="group" aria-label="History period">
+                    <button data-period="24" class="active" aria-pressed="true">24H</button>
+                    <button data-period="168" aria-pressed="false">7D</button>
+                    <button data-period="720" aria-pressed="false">30D</button>
+                </div>
+                <span id="updated">Waiting for data</span>
             </div>
         </header>
-
-        <main id="services-container">
-            <!-- Services injected by JS -->
-            <div id="loading" class="loading-state">Loading services...</div>
-        </main>
+        <p id="refresh-error" role="status" hidden></p>
+        <main id="services-container"><div class="loading-state">Loading services...</div></main>
     </div>
-
-    <!-- Template -->
     <template id="service-template">
-        <div class="service-card">
+        <section class="service-card">
             <div class="service-header">
-                <div class="service-title">
-                    <span class="status-indicator"></span>
-                    <h2 class="service-name">Service Name</h2>
-                    <a href="" target="_blank" class="service-link">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2"
-                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
-                        </svg>
-                    </a>
-                </div>
-                <div class="service-metrics">
-                    <span class="uptime-percentage">100% Uptime</span>
-                    <span class="downtime-total">0m Downtime</span>
-                </div>
+                <div class="service-title"><span class="status-indicator"></span><div><h2 class="service-name"></h2><a class="service-link" target="_blank" rel="noopener"></a></div></div>
+                <span class="current-status"></span>
             </div>
-
+            <dl class="service-metrics">
+                <div><dt>Uptime</dt><dd class="uptime-percentage"></dd></div>
+                <div><dt>Outages</dt><dd class="outage-count"></dd></div>
+                <div><dt>Total downtime</dt><dd class="downtime-total"></dd></div>
+                <div><dt>Longest outage</dt><dd class="longest-outage"></dd></div>
+                <div><dt>Avg. response</dt><dd class="average-ping"></dd></div>
+            </dl>
             <div class="uptime-bar-container">
-                <div class="uptime-segments"></div>
-                <div class="uptime-labels">
-                    <span class="start-label"></span>
-                    <div class="uptime-line"></div>
-                    <span class="end-label">Today</span>
-                </div>
+                <div class="uptime-segments" aria-label="Availability history"></div>
+                <div class="uptime-labels"><span class="start-label"></span><span>Now</span></div>
+                <div class="segment-detail" role="status"></div>
             </div>
-
-            <div class="chart-wrapper">
-                <h3>Ping History</h3>
-                <div class="chart-container">
-                    <canvas class="ping-chart"></canvas>
-                </div>
-            </div>
-        </div>
+            <div class="chart-wrapper"><h3>Response time <span>ms</span></h3><div class="chart-container"><canvas class="ping-chart" role="img" aria-label="Average response time history"></canvas><p class="chart-empty" hidden></p></div></div>
+            <details class="outage-history"><summary>Recent outages <span class="history-count"></span></summary><div class="outage-list"></div></details>
+        </section>
     </template>
-
     <script type="module" src="/js/main.js"></script>
 </body>
-
 </html>

@@ -1,248 +1,87 @@
 :root {
-    --bg-color: #000000;
-    --card-bg: #0a0a0a;
-    --border-color: transparent;
-    --text-primary: #ededed;
-    --text-secondary: #737373;
-    --accent: #2f81f7;
-
-    --color-up: #18d43b;
-    --color-down: #EF4444;
-    --color-unknown: #171717;
-
-    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: var(--font-family);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 60px 20px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 60px;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.header-left h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-}
-
-.github-link {
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    transition: var(--transition);
-}
-
-.github-link:hover {
-    color: var(--text-primary);
-}
-
-.period-selector {
-    display: flex;
-    gap: 4px;
-    background: #121212;
-    padding: 4px;
-    border-radius: 8px;
-}
-
-.period-selector button {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.period-selector button:hover {
-    color: var(--text-primary);
-}
-
-.period-selector button.active {
-    background: #262626;
-    color: #ffffff;
-}
-
-.loading-state {
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 60px;
-    font-size: 15px;
-}
-
-/* Service Card */
-.service-card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 32px;
-    margin-bottom: 24px;
-}
-
-.service-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 28px;
-}
-
-.service-title {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.status-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-unknown);
-}
-
-.status-indicator.up {
-    background: var(--color-up);
-    box-shadow: 0 0 16px rgba(52, 211, 153, 0.2);
-}
-
-.status-indicator.down {
-    background: var(--color-down);
-    box-shadow: 0 0 16px rgba(248, 113, 113, 0.2);
-}
-
-.service-name {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: -0.3px;
-}
-
-.service-link {
-    color: var(--text-secondary);
-    transition: var(--transition);
-    display: flex;
-    margin-top: 2px;
-}
-
-.service-link:hover {
-    color: var(--text-primary);
-}
-
-.service-metrics {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.uptime-percentage {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-up);
-}
-
-.uptime-percentage.warning {
-    color: #d29922;
-}
-
-.uptime-percentage.danger {
-    color: var(--color-down);
-}
-
-.downtime-total {
-    font-size: 13px;
-    color: var(--text-secondary);
-}
-
-/* Status Bar */
-.uptime-bar-container {
-    margin-bottom: 32px;
-}
-
-.uptime-segments {
-    display: flex;
-    gap: 3px;
-    height: 36px;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.segment {
-    flex: 1;
-    background: var(--color-unknown);
-    transition: opacity 0.2s;
-    cursor: pointer;
-    position: relative;
-    border-radius: 2px;
-}
-
-.segment:hover {
-    opacity: 0.8;
-}
-
-.segment.up {
-    background: var(--color-up);
-}
-
-.segment.down {
-    background: var(--color-down);
-}
-
-.uptime-labels {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    color: var(--text-secondary);
-    font-size: 12px;
-}
-
-.uptime-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border-color);
-    margin: 0 16px;
-}
-
-/* Charts */
-.chart-wrapper h3 {
+    color-scheme: dark;
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --border: #1d1d1d;
+    --text: #f1f2f4;
+    --muted: #9a9da6;
+    --green: #18d43b;
+    --red: #f46370;
+    --amber: #efc050;
+    --unknown: #393c43;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
+    letter-spacing: 0;
 }
-
-.chart-container {
-    height: 140px;
-    width: 100%;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid #7bafff; outline-offset: 4px; }
+[hidden] { display: none !important; }
+.container { max-width: 1100px; margin: auto; padding: 44px 32px 24px; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.project-link { color: var(--muted); font-size: 11px; font-weight: 650; text-decoration: none; }
+h1 { font-size: 30px; font-weight: 650; margin-top: 4px; }
+.header-controls { display: flex; align-items: center; flex-direction: column; gap: 8px; }
+.period-selector { display: flex; background: #1b1d21; padding: 5px; border-radius: 999px; }
+.period-selector button { width: 58px; height: 32px; border: 0; border-radius: 999px; color: var(--muted); background: transparent; font-size: 12px; font-weight: 650; cursor: pointer; }
+.period-selector button.active { background: #41444c; color: #fff; }
+.period-selector button:hover { color: #fff; }
+#updated { color: var(--muted); font-size: 11px; }
+.service-card { padding: 30px 32px 26px; margin-bottom: 22px; background: var(--surface); border: 1px solid #121212; border-radius: 22px; box-shadow: 0 8px 24px #00000020; scroll-margin-top: 20px; min-width: 0; }
+.service-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 23px; }
+.service-title { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.service-title > div { min-width: 0; }
+.status-indicator { width: 9px; height: 9px; border-radius: 50%; background: var(--unknown); flex-shrink: 0; }
+.status-indicator.up { background: var(--green); }
+.status-indicator.down { background: var(--red); }
+.service-name { font-size: 19px; font-weight: 600; overflow-wrap: anywhere; }
+.service-link { color: var(--muted); font-size: 12px; text-decoration: none; overflow-wrap: anywhere; }
+.service-link:hover { color: var(--text); text-decoration: underline; }
+.current-status { flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: #25272b; }
+.current-status.up { color: var(--green); background: #142e19; }
+.current-status.down { color: var(--red); background: #392127; }
+.service-metrics { display: grid; grid-template-columns: 1.1fr repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.service-metrics > div { min-width: 0; }
+dt { color: var(--muted); font-size: 11px; margin-bottom: 5px; }
+dd { font-size: 23px; font-weight: 550; line-height: 1.25; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.uptime-percentage { color: var(--green); }
+.uptime-segments { display: grid; grid-template-columns: repeat(60, minmax(0, 1fr)); gap: 3px; height: 30px; }
+.segment { height: 30px; min-width: 0; border: 0; border-radius: 4px; cursor: pointer; background: var(--unknown); }
+.segment:hover, .segment:focus { filter: brightness(1.2); outline: 2px solid var(--text); outline-offset: 2px; }
+.segment.partial { opacity: 0.65; }
+.uptime-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; margin-top: 8px; }
+.segment-detail { min-height: 27px; padding-top: 5px; font-size: 11px; color: #bec2ca; overflow-wrap: anywhere; }
+.chart-wrapper h3 { font-size: 11px; font-weight: 500; color: var(--muted); margin: 8px 0 12px; }
+.chart-wrapper h3 span { float: right; }
+.chart-container { height: 100px; position: relative; width: 100%; }
+.chart-empty { color: var(--muted); padding: 24px 0; font-size: 12px; }
+.outage-history { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+.outage-history summary { cursor: pointer; font-size: 12px; color: #c6c9cf; width: fit-content; }
+.history-count { color: var(--muted); margin-left: 7px; font-variant-numeric: tabular-nums; }
+.outage-row { display: grid; grid-template-columns: 1fr auto auto; gap: 20px; padding: 10px 0; border-bottom: 1px solid #232529; color: var(--muted); font-size: 12px; }
+.outage-row:last-child { border-bottom: 0; }
+.outage-row .ongoing { color: var(--red); }
+.outage-row .resolved { color: var(--green); }
+.outage-row .outage-duration { color: var(--text); font-variant-numeric: tabular-nums; }
+.empty-history { color: var(--muted); font-size: 12px; padding: 12px 0 0; }
+.loading-state { color: var(--muted); text-align: center; padding: 60px 16px; }
+#refresh-error { color: var(--amber); font-size: 12px; padding-top: 16px; }
+@media (max-width: 650px) {
+    .container { padding: 24px 14px; }
+    header { gap: 12px; margin-bottom: 20px; }
+    h1 { font-size: 24px; }
+    .period-selector button { width: 40px; }
+    .service-card { padding: 22px 18px 20px; margin-bottom: 16px; border-radius: 18px; }
+    .service-header { align-items: flex-start; gap: 10px; }
+    .service-name { font-size: 17px; }
+    .current-status { font-size: 10px; padding: 4px 8px; }
+    .service-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 12px; }
+    dd { font-size: 20px; }
+    .uptime-segments { gap: 2px; height: 26px; }
+    .segment { height: 26px; }
+    .outage-row { grid-template-columns: 1fr auto; gap: 4px 12px; }
+    .outage-row > span:last-child { grid-column: 2; }
 }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

@@ -1,19 +1,21 @@
-version: '3.8'
-
 services:
   db:
     image: mysql:8.0
     container_name: uptime_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in your environment or .env}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-uptime}
       MYSQL_USER: ${MYSQL_USER:-uptime}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-uptime}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in your environment or .env}
     volumes:
       - ${MYSQL_DATA_DIR:-./mysql_data}:/var/lib/mysql
-    ports:
-      - "3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent", "--connect-timeout=3"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   backend:
     build:
@@ -22,14 +24,26 @@ services:
     container_name: uptime_backend
     restart: always
     environment:
-      - DEV_MODE=1
-      - URLS=${URLS}
+      - URLS=${URLS:-}
       - DB_HOST=db
       - DB_PORT=3306
       - DB_USER=${MYSQL_USER:-uptime}
-      - DB_PASSWORD=${MYSQL_PASSWORD:-uptime}
+      - DB_PASSWORD=${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in your environment or .env}
       - DB_NAME=${MYSQL_DATABASE:-uptime}
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN:-}
+      - TG_CHAT_ID=${TG_CHAT_ID:-}
+      - DASHBOARD_URL=${DASHBOARD_URL:-}
+      - CHECK_INTERVAL_SECONDS=${CHECK_INTERVAL_SECONDS:-10}
+      - PING_SAMPLE_SECONDS=${PING_SAMPLE_SECONDS:-60}
+      - HISTORY_RETENTION_DAYS=${HISTORY_RETENTION_DAYS:-90}
     ports:
       - "8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "healthcheck.py"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
