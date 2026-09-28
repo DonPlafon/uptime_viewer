@@ -99,3 +99,30 @@ The follow-up review reproduced and fixed three more defects:
 Regression tests cover connection release and mid-flight target changes, proxy
 bypass, a 900-second retry hint, and malformed Telegram response structures.
 No UI text, production data, or deployed configuration changed in this follow-up.
+
+## MySQL Pre-Ping Compatibility Fix
+
+A deployed backend exposed a driver compatibility gap missed by the SQLite suite:
+SQLAlchemy 2.0.27 can call its aiomysql adapter's `ping()` without the required
+`reconnect` argument when using newer PyMySQL. This fails when a pooled connection
+is reused, including the startup service query. The regression test in
+`tests/test_mysql_driver.py` reproduces that exact TypeError with the old pin using
+the installed MySQL dialect and real async adapter, without requiring MySQL.
+
+SQLAlchemy is now pinned to 2.0.54, including the upstream
+[aiomysql pre-ping fix](https://docs.sqlalchemy.org/en/20/changelog/changelog_20.html#change-2.0.50).
+Pre-ping remains enabled. This dependency fix does not change schema, history,
+retention settings or database credentials, and does not resolve the separate
+fresh-install URL-index issue above.
+
+After obtaining the fixed source, rebuild and recreate only the backend:
+
+```sh
+docker compose build backend
+docker compose up -d --no-deps backend
+docker compose logs --tail=100 backend
+```
+
+Keep the existing MySQL container and data directory. No database reset or volume
+removal is needed. A simple container restart does not install the updated pin.
+The driver test checks argument compatibility, not a live MySQL deployment.

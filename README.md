@@ -194,6 +194,7 @@ The dependency condition gates initial startup, not later database recovery.
 | `tests/metrics.test.mjs` | Deterministic duration, clipping, unknown-state and color tests |
 | `tests/test_http.py`, `tests/http_smoke_app.py` | Real loopback Sanic startup/routes/health smoke test with SQLite and synthetic checks |
 | `tests/test_repository.py` | Compose exposure, credential and example-config invariants |
+| `tests/test_mysql_driver.py` | Installed MySQL dialect/async adapter pre-ping compatibility without a database server |
 | `requirements-dev.txt` | Reproducible development/test/browser/audit dependencies |
 | `tools/run_checks.py` | Time-bounded Python/Node verification runner |
 | `tools/preview.py` | Temporary synthetic API and screenshot orchestration; never uses real DB |
